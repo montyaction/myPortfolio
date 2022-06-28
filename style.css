@@ -272,15 +272,51 @@ img {
 }
   
 .contact-details {
+    position: relative;
     font-size: 2.4rem;
     text-shadow: 2px 2px 1px #1f1f1f;
     transition: transform 0.3s ease-out;
+    z-index: 1;
 }
   
 .contact-details:hover {
     transform: translateY(8px);
+    
+}
+@keyframes animateBgColor
+{
+    0%
+    {
+        width: 10px;
+        /* filter: hue-rotate(0deg); */
+    }
+    100%
+    {
+        width: 250px;
+        /* filter: hue-rotate(360deg); */
+    }
 }
 
+.neon-light:hover::before {
+    content: '';
+    position: absolute;
+    transform: translate(-24%, 20%);
+    width: 250px;
+    height: 50px;
+    background: radial-gradient(var(--main-red), transparent, transparent);
+    animation: animateBgColor 0.3s linear;
+    /* border-radius: 50%; */
+}
+.neon-light:hover::after {
+    content: '';
+    position: absolute;
+    transform: translate(-78%, 22%);
+    width: 250px;
+    height: 50px;
+    background: radial-gradient(var(--main-red), transparent, transparent);
+    animation: animateBgColor 0.3s linear;
+    /* border-radius: 50%; */
+}
 /* Footer */
 
 footer {
