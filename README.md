@@ -2,6 +2,8 @@
 
 Welcome to my personal portfolio website! This is where I showcase my projects, skills, and blog posts as part of my journey in web development.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/28229b62-1ea2-4c81-8114-c5a5c258a371/deploy-status)](https://app.netlify.com/sites/montyaction/deploys)
+
 ## Features
 
 - **About Me**: Learn more about my background, experience, and goals.
