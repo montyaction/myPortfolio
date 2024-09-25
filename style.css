@@ -135,11 +135,15 @@ img {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
     background-color: #000;
     background-image: linear-gradient(62deg, #3a3d40 0%, #181719 100%);
+    margin-top: 70px;
+    padding-top: 70px;
 }
-  
+
+.spacer {
+    /* height: 70px; */
+}
 .welcome-section > p {
     /* text-align: center; */
     font-size: 3rem;
