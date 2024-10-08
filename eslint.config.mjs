@@ -18,7 +18,7 @@ const compat = new FlatCompat({
 
 export default [
     // Base configurations
-    ...compat.extends("eslint:recommended", "plugin:react/recommended"),
+    ...compat.extends("eslint:recommended", "plugin:react/jsx-runtime"),
 
     // Main configuration
     {
@@ -32,6 +32,7 @@ export default [
             globals: {
                 ...globals.browser,
                 ...globals.jest,
+                ...globals.node,
             },
 
             ecmaVersion: 12,
@@ -51,6 +52,10 @@ export default [
         },
 
         rules: {
+            'react/jsx-uses-react': 'error', // Ensures React is recognized as used
+            'react/jsx-uses-vars': 'error', // Ensures variables used in JSX are recognized
+
+            "react/no-unescaped-entities": "off",   // Turn off the rules
             "react/react-in-jsx-scope": "off",  // No need for 'React' import in scope for JSX
             "react/prop-types": "off",  // Disable prop-types rule if using TypeScript or not required
         },
@@ -94,6 +99,7 @@ export default [
     {
         ignores: [
             "dist/**",  // Ignore bundled output
+            "**/__tests__**", // Ignore the test files
             "node_modules/**",  // Ignore dependencies
         ],
     }

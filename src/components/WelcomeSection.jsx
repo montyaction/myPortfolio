@@ -1,4 +1,3 @@
-import React from 'react';
 import pImg from '../assets/images/IMG_20190508_121546_807.jpg';
 
 const WelcomeSection = () => {

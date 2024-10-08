@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Header from "./components/Header";
 import WelcomeSection from "./components/WelcomeSection";
 import Projects from "./components/Projects";
@@ -25,4 +25,4 @@ const App = () => {
     );
 }
 
-export default App
+export default App;

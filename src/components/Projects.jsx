@@ -1,4 +1,3 @@
-import React from 'react';
 import documentation from '../assets/images/Documentation_Website.png';
 import drum from '../assets/images/Drum_Machine.png';
 import markdown from '../assets/images/Markdown_Previewer.png';
