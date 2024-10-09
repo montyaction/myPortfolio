@@ -1,3 +1,5 @@
+import React from "react";
+
 const Navbar = () => (
   <nav id="navbar" className="nav">
     <ul className="nav-list">

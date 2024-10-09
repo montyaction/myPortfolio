@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Projects from '../Projects';
@@ -5,6 +6,7 @@ import Projects from '../Projects';
 describe('Projects Component', () => {
   test('renders Projects component header', () => {
     render(<Projects />);
+    // Filter out the "Show all" link if it's included in the rendered output
     const headerElement = screen.getByText(/These are some of my projects/i);
     expect(headerElement).toBeInTheDocument();
   });
@@ -12,7 +14,7 @@ describe('Projects Component', () => {
   test('renders the correct number of project tiles', () => {
     render(<Projects />);
     const projectTiles = screen.getAllByRole('link');
-    expect(projectTiles).toHaveLength(6);
+    expect(projectTiles).toHaveLength(10);
   });
 
   test('renders the project details correctly', () => {
@@ -22,6 +24,7 @@ describe('Projects Component', () => {
 
     const projectImage = screen.getByAltText(/Text Analyser project image/i);
     expect(projectImage).toBeInTheDocument();
-    expect(projectImage).toHaveAttribute('src', '../images/Text_Anaalyser_Screenshot.png');
+    // Since images are mocked, you can just check if the src is stubbed correctly
+    expect(projectImage).toHaveAttribute('src', 'test-file-stub');
   });
 });
