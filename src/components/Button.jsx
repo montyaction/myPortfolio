@@ -1,8 +1,8 @@
 import React from "react";
 
-const Button = ({ onClick, children }) => (
-    <button onClick={onClick}>
-        {children}
+const Button = () => (
+    <button>
+        Click Me
     </button>
 );
 
