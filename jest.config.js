@@ -1,12 +1,14 @@
 module.exports = {
     setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
     testEnvironment: 'jsdom',
+    // moduleFileExtensions: ['js', 'jsx', 'json', 'node'],
     moduleNameMapper: {
         '\\.(css|less)$': 'identity-obj-proxy',
         '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/__mocks__/fileMock.js',
     },
-    // transform: {
-    //     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-    //       '<rootDir>/fileTransformer.js',
-    // },
+    transform: {
+        '^.+\\.jsx?$': 'babel-jest',
+        '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':'<rootDir>/fileTransformer.js',
+    },
+    // transformIgnorePatterns: ['<rootDir>/node_modules'],
 };
