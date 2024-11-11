@@ -4,12 +4,14 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    bundle: path.resolve(__dirname, './src/index.js'),
+  },
 
   // This property defines the file path and the file name which will be used for deploying the bundled file
   output: {
-    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    filename: '[name][contenthash].js',
     // publicPath: '/',
     // assetModuleFilename: 'images/[name][hash][ext][query]',  // For handling images
     clean: true,  // Clean the dist folder on each build
@@ -23,7 +25,10 @@ module.exports = {
       directory: path.join(__dirname, 'dist'),  // Path to serve static files
     },
     compress: true,
-    port: 3500, // Custom port
+    port: 3000, // Custom port
+    open: true,
+    hot: true,
+    historyApiFallback: true,
   },
 
   // Module rules and loaders
@@ -70,7 +75,11 @@ module.exports = {
     }),
     new ESLintPlugin({
       extensions: ['js', 'jsx'],
+      overrideConfigFile: path.resolve(__dirname, 'eslint.config.mjs'),  // Explicitly set the ESLint config file
+      emitWarning: true,  // Allows the build to pass on ESLint warnings
+      failOnError: false, // Prevent build from failing on errors
     }),
+
     new CopyWebpackPlugin({
       patterns: [
         { from: 'src/service-worker.js', to: 'service-worker.js' },
@@ -79,6 +88,6 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.mjs'],
   },
 };

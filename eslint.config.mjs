@@ -1,6 +1,7 @@
 import globals from "globals";
-import reactPlugin from "eslint-plugin-react";
 import js from "@eslint/js";
+import reactPlugin from "eslint-plugin-react";
+import babelParser from "@babel/eslint-parser";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { FlatCompat } from "@eslint/eslintrc";
@@ -23,26 +24,28 @@ export default [
     // Main configuration
     {
         files: ["**/*.js", "**/*.jsx"],
-
-        plugins: {
-            reactPlugin,
-        },
-
         languageOptions: {
+            parser: babelParser,
+            parserOptions: {
+                requireConfigFile: false,
+                babelOptions: {
+                    presets: ["@babel/preset-react", "@babel/preset-env"]
+                },
+                ecmaVersion: "latest",
+                sourceType: "module",
+                ecmaFeatures: {
+                    jsx: true,
+                },
+            },
             globals: {
                 ...globals.browser,
                 ...globals.jest,
                 ...globals.node,
             },
+        },
 
-            ecmaVersion: 12,
-            sourceType: "module",
-
-            parserOptions: {
-                ecmaFeatures: {
-                    jsx: true,
-                },
-            },
+        plugins: {
+            react: reactPlugin,
         },
 
         settings: {
@@ -52,6 +55,7 @@ export default [
         },
 
         rules: {
+            ...js.configs.recommended.rules,
             'react/jsx-uses-react': 'error', // Ensures React is recognized as used
             'react/jsx-uses-vars': 'error', // Ensures variables used in JSX are recognized
 
@@ -100,7 +104,9 @@ export default [
         ignores: [
             "dist/**",  // Ignore bundled output
             "**/__tests__**", // Ignore the test files
+            "**/*.config.mjs",  // Ignore the eslint config file
             "node_modules/**",  // Ignore dependencies
         ],
-    }
+    },
+    reactPlugin.configs.flat.recommended,
 ];
