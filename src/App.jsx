@@ -7,11 +7,15 @@ import Footer from "./components/Footer";
 
 const App = () => {
     useEffect(() => {
-        const worker = new Worker(new URL('./web-worker.js', import.meta.url));
-        worker.postMessage(10);
+        const worker = new Worker(WorkerScript);
+        worker.postMessage(10);  // Send data to the worker
+
         worker.onmessage = (event) => {
           console.log('Result from worker:', event.data);
         };
+
+        // Clean up the worker when the component unmounts
+        return () => worker.terminate();
     }, []);
 
     return (
