@@ -7,11 +7,8 @@ import Footer from "./components/Footer";
 
 const App = () => {
     useEffect(() => {
-        const worker = new Worker(new URL('./web-worker.js', import.meta.url));
-        worker.postMessage(10);
-        worker.onmessage = (event) => {
-          console.log('Result from worker:', event.data);
-        };
+        if (process.env.NODE_ENV === 'test') return;
+        import('./initWorker').then(({ initWorker }) => initWorker()).catch(() => {});
     }, []);
 
     return (
