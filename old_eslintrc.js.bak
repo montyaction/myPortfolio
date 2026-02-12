@@ -7,13 +7,14 @@ module.exports = {
     'airbnb',
     'plugin:react/recommended',
   ],
-  parser: 'babel-eslint', // Use Babel-ESLint to lint modern JavaScript
+  parser: '@babel/eslint-parser', // Updated parser // Use Babel-ESLint to lint modern JavaScript
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 12,
     sourceType: 'module',
+    requireConfigFile: false, // Required for @babel/eslint-parser
   },
   plugins: [
     'react',
@@ -23,4 +24,12 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/react-in-jsx-scope': 'off', // React 17+ doesn't require import of React
   },
+  overrides: [
+    {
+      files: ['**/*.js'],
+      parserOptions: {
+        sourceType: 'module',
+      },
+    },
+  ],
 };

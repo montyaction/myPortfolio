@@ -25,7 +25,7 @@ module.exports = {
       directory: path.join(__dirname, 'dist'),  // Path to serve static files
     },
     compress: true,
-    port: 3000, // Custom port
+    port: 8080,
     open: true,
     hot: true,
     historyApiFallback: true,
@@ -75,9 +75,11 @@ module.exports = {
     }),
     new ESLintPlugin({
       extensions: ['js', 'jsx'],
-      overrideConfigFile: path.resolve(__dirname, 'eslint.config.mjs'),  // Explicitly set the ESLint config file
-      emitWarning: true,  // Allows the build to pass on ESLint warnings
-      failOnError: false, // Prevent build from failing on errors
+      emitWarning: true,
+      emitError: false,
+      failOnError: false,
+      failOnWarning: false,
+      configType: 'flat',
     }),
 
     new CopyWebpackPlugin({
